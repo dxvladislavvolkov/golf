@@ -1,0 +1,66 @@
+﻿<div class="info-page page">
+    <dx-responsive-box class="responsive-info"
+        [screenByWidth]="getScreen"
+        (onOptionChanged)="adaptation()"
+        singleColumnScreen="xs">
+
+        <dxi-row [baseSize]="109" screen="lg sm md"></dxi-row>
+        <dxi-row [baseSize]="945" screen="lg sm md"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+        <dxi-row [ratio]="1"></dxi-row>
+
+        <dxi-col [ratio]="1"></dxi-col>
+        <dxi-col [ratio]="1"></dxi-col>
+
+        <dxi-item class="info-search">
+            <dxi-location
+                [row]="0"
+                [col]="0"
+                screen="lg md sm">
+            </dxi-location>
+            <dxi-location
+                [row]="0"
+                [col]="0"
+                screen="xs">
+            </dxi-location>
+            <full-address (dataLoaded)="repaint($event)"></full-address>
+        </dxi-item>
+        <dxi-item class="info-search">
+            <dxi-location
+                [row]="0"
+                [col]="1"
+                screen="lg md sm">
+            </dxi-location>
+            <dxi-location
+                [row]="1"
+                [col]="0"
+                screen="xs">
+            </dxi-location>
+            <div class="right-side">
+                <div class="details">{{searchingParams.startDate | date: 'EEE dd'}} - {{searchingParams.endDate | date: 'EE dd, MMMM yyyy'}}</div>
+                <change-search [params]="searchingParams" [adaptOptions]="adaptOptions"></change-search>
+            </div>
+        </dxi-item>
+        <dxi-item class="result-search">
+            <dxi-location
+                [row]="1"
+                [col]="0"
+                [colspan]="2"
+                screen="lg md sm">
+            </dxi-location>
+            <dxi-location
+                [row]="1"
+                [col]="0"
+                screen="xs">
+            </dxi-location>
+            <descroption [adaptOptions]="adaptOptions"></descroption>
+        </dxi-item>
+    </dx-responsive-box>
+    <dx-load-panel message="Loading..."
+        [shading]="true"
+        [showPane]="false"
+        shadingColor="#f6f9f5"
+        [position]="{ of: '#page'}"
+        [visible]="loadingData">
+    </dx-load-panel>
+</div>
